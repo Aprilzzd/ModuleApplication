@@ -1,0 +1,63 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar','*.aar'])
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    api rootProject.ext.dependencies["appcompat"]
+    api rootProject.ext.dependencies["material"]
+    api rootProject.ext.dependencies["constraintlayout"]
+    api rootProject.ext.dependencies["rxandroid"]
+    api rootProject.ext.dependencies["retrofit"]
+    api rootProject.ext.dependencies["adapter-rxjava"]
+    api rootProject.ext.dependencies["converter-gson"]
+    api rootProject.ext.dependencies["glide"]
+    api rootProject.ext.dependencies["arouter"]
+//    api "com.android.support:support-annotations:28.0.0"
+//    annotationProcessor "com.android.support:support-annotations:28.0.0"
+    api rootProject.ext.dependencies["okhttp3-logging-interceptor"]
+    api rootProject.ext.dependencies["SmartRefreshLayout"]
+    api rootProject.ext.dependencies["wechat"]
+    api rootProject.ext.dependencies["eventbus"]
+//    api rootProject.ext.dependencies["BaseRecyclerViewAdapter"]
+    api rootProject.ext.dependencies["autodispose"]
+    api rootProject.ext.dependencies["fragmentationx"]
+    api rootProject.ext.dependencies["progressmanager"]
+    api rootProject.ext.dependencies["utilcode"]
+}
+
+apply plugin: 'maven'
+
+uploadArchives{
+    repositories.mavenDeployer{
+        // 配置本地仓库路径，项目根目录下的repository目录中
+        repository(url: "file://E://maven")
+        pom.groupId = "com.android.base"// 唯一标识（通常为模块包名，也可以任意）
+        pom.artifactId = "basemodule" // 项目名称（通常为类库模块名称，也可以任意）
+        pom.version = "1.0.0" // 版本号
+    }
+}

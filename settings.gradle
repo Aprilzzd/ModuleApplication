@@ -1,0 +1,1 @@
+include ':app', ':basemodule', ':firstmodule', ':apt_processor', ':apt_annotation', ':apt_library', ':mytest'
