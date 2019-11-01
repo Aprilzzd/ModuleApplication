@@ -11,7 +11,7 @@ class Test1{
 }
 
 fun main(){
-    quickSort()
+    shellSort()
 }
 
 fun listOperator(){
@@ -84,6 +84,10 @@ fun insertTest(){
 
 /**
  * 希尔排序
+ * 插入排序的高效方式，O(nlogn)
+ * 插入排序会在数列基本有序的时候效率高，所以希尔排序利用了这一点
+ * 也称递减增量排序算法，增量一般取3 * h + 1，用增量将数列分组，对子数列排序
+ * 使数列大致有序，当增量为1时整个数列为一组，进行最后的插入排序
  */
 fun shellSort(){
     val a = intArrayOf(4, 8, 9, 1, 10, 6, 2, 5)
@@ -91,20 +95,22 @@ fun shellSort(){
     val n = a.size
     while (h < n / 3)
         //常用
-        h = 3 * h + 1
+        h = 3 * h + 1//4
     while (h >= 1) {
         //增量为h的插入排序
-        for (i in h until n) {
-            val v = a[i]    //h=4 i=4 n=8
+        for (i in h until n) {//下标4到8循环 增量是4
+            val v = a[i]    //h=4 i=4 n=8  v是元素4
             var j = i - h   //j=0
-            while (j >= 0 && a[j] > v) {
+            while (j >= 0 && a[j] > v) {//a[0]>a[4]
                 a[j + h] = a[j]
                 j -= h
             }
             a[j + h] = v
+            println(a.toList())
         }
         h /= 3
     }
+
 }
 
 /**
@@ -152,7 +158,7 @@ fun bubbleSort(){
  * 快速排序，平均复杂度O(nlogn),最糟糕时O(n^2),每一趟的时间复杂度是 O(n)
  * ，递归调用的次数相当于递归树的层数O(logn),所以总共的复杂度就是O(nlogn)
  *
- * 从两端找是因为要把大小数都放到两端，如果从一端找的话无法实现
+ * 从两端找是因为要把大小数都放到两端，如果从一端找的话无法实现（填坑法）
  *
  */
 fun quickSort(){
@@ -164,7 +170,7 @@ fun quickSort(){
 
 fun quick_sort(s:IntArray, l:Int, r:Int){//对一个数组进行分治法
     if (l < r) {
-        var i = l//i和j分别记录左右两边进度的下标
+        var i = l//i和j分别记录左右两边进度的下标，l和r分别记录数组开始和结束的下标
         var j = r
         val x = s[l]//以第一个数作为基准
         while (i < j) {//当i==j，坑位于中间

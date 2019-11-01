@@ -3,6 +3,7 @@ package com.example.moduleapplication.fragment
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.ViewGroup
 import com.alibaba.android.arouter.launcher.ARouter
 import com.blankj.utilcode.util.ToastUtils
 import com.example.basemodule.base.BaseContract
@@ -23,7 +24,7 @@ class MainFragment : BaseFragment<BasePresenter<BaseContract.BaseView>>() {
     }
 
     override fun initPresenter() {
-        
+
     }
 
     override fun initView(view: View) {
@@ -36,6 +37,7 @@ class MainFragment : BaseFragment<BasePresenter<BaseContract.BaseView>>() {
                     .navigation() as ISupportFragment?,1
             )
             try {
+                //arouter加载到的
                 var cla=Class.forName("com.alibaba.android.arouter.core.Warehouse")
                 val field=cla.getDeclaredField("routes")
                 field.isAccessible=true
@@ -48,6 +50,21 @@ class MainFragment : BaseFragment<BasePresenter<BaseContract.BaseView>>() {
                 e.printStackTrace()
             }
 
+        }
+
+        printView(_mActivity.window.decorView)
+    }
+
+    /**
+     * 打印view
+     */
+    private fun printView(view: View?){
+        println(view.toString())
+        if (view is ViewGroup){
+            Log.e("==",""+view.childCount)
+            for (i in 0 until view.childCount){
+                printView(view.getChildAt(i))
+            }
         }
     }
 

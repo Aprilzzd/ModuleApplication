@@ -3,7 +3,6 @@ package com.example.mytest
 import java.lang.reflect.InvocationHandler
 import java.lang.reflect.Method
 import java.lang.reflect.Proxy
-import java.util.*
 
 interface Maijiu{
     fun maijiu()
@@ -35,16 +34,38 @@ fun main(){
         , arrayOf(Maijiu::class.java),handler) as Maijiu
     maijiu.maijiu()
 
-    val map= LinkedHashMap<Int,String>()
-    map[1] = "1"
-    map[1] = "2"
+    val guitai=Guitai(Sell())
+    val food=Proxy.newProxyInstance(ClassLoader.getSystemClassLoader()
+        , arrayOf(Food::class.java),guitai) as Food
+    food.drink()
+    food.water()
 
-    val entries = map.entries
+//    val map= LinkedHashMap<Int,String>()
+//    map[1] = "1"
+//    map[1] = "2"
+//
+//    val entries = map.entries
+//
+//    entries.clear()
+//    println(map)
+//
+//    val path="/123/456"
+//    println(path.substring(1, path.indexOf("/", 1)))
+}
 
-    entries.clear()
-    println(map)
+interface Food{
+    fun water()
+    fun drink()
+}
 
-    val path="/123/456"
-    println(path.substring(1, path.indexOf("/", 1)))
+class Sell:Food{
+    override fun water() {
+        println("卖水")
+    }
+
+    override fun drink() {
+        println("卖饮料")
+    }
+
 }
 

@@ -24,6 +24,8 @@ public class MyJava {
                 this.getId();
             }
         }.start();
+
+        System.out.println(Float.valueOf("0.00").intValue());
     }
 
     static void create(int... ints){

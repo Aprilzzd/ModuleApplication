@@ -61,18 +61,15 @@ class AptTestFragment : BaseFragment<BasePresenter<BaseContract.BaseView>>() {
 
     override fun onDestroy() {
         super.onDestroy()
-
     }
 
     class MyHandler(fragment: AptTestFragment) : Handler() {
 
-        private var mFragment= WeakReference(fragment)
+        private var mFragment: WeakReference<AptTestFragment>?= WeakReference(fragment)
 
         override fun handleMessage(msg: Message) {
             super.handleMessage(msg)
-            if (mFragment.get()!=null){
-                mFragment.get()!!.btn.text=msg.obj.toString()
-            }
+                mFragment?.get()?.btn?.text=msg.obj.toString()
         }
     }
 

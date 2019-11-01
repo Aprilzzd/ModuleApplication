@@ -70,6 +70,8 @@ fun main() {
 
     println("joinedToString = $joinedToString")
     println("product = $product")
+
+
 }
 
 fun Test.test(i:Int){
