@@ -53,6 +53,16 @@ class MainFragment : BaseFragment<BasePresenter<BaseContract.BaseView>>() {
         }
 
         printView(_mActivity.window.decorView)
+
+        btn.setOnTouchListener { view, event ->
+//            Log.e("tbn","${event.action}")
+            false
+        }
+        ll.setOnTouchListener { v, event ->
+//            Log.e("ll","${event.action}")
+            false
+        }
+        
     }
 
     /**
@@ -61,7 +71,6 @@ class MainFragment : BaseFragment<BasePresenter<BaseContract.BaseView>>() {
     private fun printView(view: View?){
         println(view.toString())
         if (view is ViewGroup){
-            Log.e("==",""+view.childCount)
             for (i in 0 until view.childCount){
                 printView(view.getChildAt(i))
             }

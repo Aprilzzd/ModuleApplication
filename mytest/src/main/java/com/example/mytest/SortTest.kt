@@ -64,10 +64,10 @@ fun insertTest(){
      */
     startTime=System.currentTimeMillis()
     val array= intArrayOf(8,3,1,5,2,1)
-    for (i in 1 until array.size){
+    for (i in 1 until array.size){//记录要比较元素的位置
         v=array[i]
 
-        for (j in i-1 downTo 0){
+        for (j in i-1 downTo 0){//依次往前遍历
             if (array[j]>v){
                 //如果大于array[i]就和后一个换位置
                 array[j+1]=array[j]
@@ -121,8 +121,8 @@ fun shellSort(){
 fun checkSort(){
     val array = intArrayOf(4, 8, 9, 1, 10, 6, 2, 5)
     var v:Int
-    for (i in array.indices){
-        for (j in i+1 until array.size){
+    for (i in array.indices){//记录要比较元素的位置
+        for (j in i+1 until array.size){//依次向后比较
             if (array[i]>array[j]){
                 v=array[i]
                 array[i]=array[j]
@@ -142,8 +142,8 @@ fun checkSort(){
 fun bubbleSort(){
     val array = intArrayOf(4, 8, 9, 1, 10, 6, 2, 5)
     var v:Int
-    for (i in array.indices){
-        for (j in 0 until array.size-i-1){
+    for (i in array.indices){//记录循环的次数，每次循环完都会选出一个最大的
+        for (j in 0 until array.size-i-1){//循环剩下的区间
             if (array[j]>array[j+1]){
                 v=array[j]
                 array[j]=array[j+1]
