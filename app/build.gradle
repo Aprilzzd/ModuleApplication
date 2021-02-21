@@ -5,6 +5,7 @@ apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
     defaultConfig {
         applicationId "com.example.moduleapplication"
         minSdkVersion rootProject.ext.minSdkVersion
@@ -12,6 +13,8 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -27,9 +30,9 @@ android {
     signingConfigs {
         debug {
             storeFile file('app.jks')
-            storePassword "111111"
-            keyAlias "key"
-            keyPassword "111111"
+            storePassword "123456"
+            keyAlias "app"
+            keyPassword "123456"
         }
     }
 
@@ -47,13 +50,9 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-    implementation project(':basemodule')
-//    implementation 'com.android.base:basemodule:1.0.0'
-    implementation project(':firstmodule')
+//    implementation project(':firstmodule')
+    api 'com.android.firstmodule:firstmodule:1.0.0-SNAPSHOT'
     kapt rootProject.ext.dependencies["arouter-compiler"]
 
     implementation project(':apt_library')

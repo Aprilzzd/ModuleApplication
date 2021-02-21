@@ -31,7 +31,7 @@ class MainFragment : BaseFragment<BasePresenter<BaseContract.BaseView>>() {
         tv.text= BuildConfig.DEBUG.toString()
         btn.setOnClickListener {
             startForResult(
-                ARouter.getInstance().build(Constants.APT_FRAGMENT)
+                ARouter.getInstance().build(Constants.FIRST_FRAGMENT)
                     .withLong("key1", 666L)
                     .withString("name", "888")
                     .navigation() as ISupportFragment?,1
@@ -43,10 +43,10 @@ class MainFragment : BaseFragment<BasePresenter<BaseContract.BaseView>>() {
                 field.isAccessible=true
                 Log.e("==",field.get(cla).toString())
             } catch (e: ClassNotFoundException) {
-                Log.e("==",e.message)
+                Log.e("==", e.message.toString())
                 e.printStackTrace()
             } catch (e: NoSuchFieldException) {
-                Log.e("==",e.message)
+                Log.e("==", e.message.toString())
                 e.printStackTrace()
             }
 
@@ -54,14 +54,14 @@ class MainFragment : BaseFragment<BasePresenter<BaseContract.BaseView>>() {
 
         printView(_mActivity.window.decorView)
 
-        btn.setOnTouchListener { view, event ->
-//            Log.e("tbn","${event.action}")
-            false
-        }
-        ll.setOnTouchListener { v, event ->
-//            Log.e("ll","${event.action}")
-            false
-        }
+//        btn.setOnTouchListener { view, event ->
+////            Log.e("tbn","${event.action}")
+//            false
+//        }
+//        ll.setOnTouchListener { v, event ->
+////            Log.e("ll","${event.action}")
+//            false
+//        }
         
     }
 

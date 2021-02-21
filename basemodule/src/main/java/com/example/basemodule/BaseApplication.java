@@ -3,6 +3,8 @@ package com.example.basemodule;
 import android.app.Application;
 import android.content.Context;
 import androidx.annotation.NonNull;
+import androidx.multidex.MultiDexApplication;
+
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.Utils;
 import com.bumptech.glide.Glide;
@@ -17,7 +19,7 @@ import com.scwang.smartrefresh.layout.header.ClassicsHeader;
  * Created by lw on 2018/1/18.
  */
 
-public class BaseApplication extends Application {
+public class BaseApplication extends MultiDexApplication {
 
     private static BaseApplication mInstance;
 
