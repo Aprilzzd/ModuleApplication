@@ -11,18 +11,18 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <com.android.cupiday.dangjianvr.utils.EmptyView
+            <EmptyView
                 android:id="@+id/view_empty"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:visibility="gone">
-            </com.android.cupiday.dangjianvr.utils.EmptyView>
-            <com.android.cupiday.dangjianvr.custom.view.MyRecyclerView
+            </EmptyView>
+            <MyRecyclerView
                 android:id="@+id/rv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-            </com.android.cupiday.dangjianvr.custom.view.MyRecyclerView>
+            </MyRecyclerView>
         </RelativeLayout>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
     <ProgressBar

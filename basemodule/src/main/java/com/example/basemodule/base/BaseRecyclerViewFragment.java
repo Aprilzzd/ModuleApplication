@@ -70,15 +70,9 @@ public abstract class BaseRecyclerViewFragment<T extends BaseContract.BasePresen
                         }
                         break;
                     case SCROLL_STATE_DRAGGING: // The RecyclerView is currently being dragged by outside input such as user touch input.
-                        //当屏幕滚动且用户使用的触碰或手指还在屏幕上，停止加载图片
-                        try {
-                            Glide.with(BaseRecyclerViewFragment.this).pauseRequests();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                        break;
                     case SCROLL_STATE_SETTLING: // The RecyclerView is currently animating to a final position while not under outside control.
                         //由于用户的操作，屏幕产生惯性滑动，停止加载图片
+                        //当屏幕滚动且用户使用的触碰或手指还在屏幕上，停止加载图片
                         try {
                             Glide.with(BaseRecyclerViewFragment.this).pauseRequests();
                         } catch (Exception e) {
