@@ -187,12 +187,13 @@ fun quick_sort(s:IntArray, l:Int, r:Int){//对一个数组进行分治法
             if (i < j)
                 s[j--] = s[i]
         }
-        s[i] = x//把基准数放入中间的坑中
+        s[i] = x//把基准数放入中间的坑中，当i == j时，i的位置必然是个坑位
         quick_sort(s, l, i - 1) // 递归调用，左边的数组，此时i为基准数的下标
         quick_sort(s, i + 1, r)// 右边的数组
     }
 }
 
+//简写，区别在于填坑后下标没有移动，多一次判断
 fun getIndex(arr:IntArray, low:Int, high:Int) {
     // 基准数据
     if (low<high){
@@ -205,6 +206,7 @@ fun getIndex(arr:IntArray, low:Int, high:Int) {
                 high1--
             }
             // 如果队尾元素小于tmp了,需要将其赋值给low
+            // low1 == high1 和 low1 < high1 都可以，这是和上面方法的区别
             arr[low1] = arr[high1]
             // 当队首元素小于等于tmp时,向前挪动low指针
             while (low1 < high1 && arr[low1] <= tmp) {
